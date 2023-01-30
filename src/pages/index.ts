@@ -1,1 +1,6 @@
 export { Home } from './Home'
+export { Login } from './Login'
+export { NewReleases } from './New-releases'
+export { Search } from './Search'
+export { SignUp } from './Signup'
+export { Top } from './Top'

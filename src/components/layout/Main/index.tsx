@@ -10,7 +10,7 @@ const Main: FC<Props> = ({children}) => {
     return (
         <>
             <Header/>
-            <main className="main">
+            <main className="main flex-grow-1">
                 {children}
             </main>
             <Footer/>
