@@ -1,6 +1,8 @@
+import './style.scss'
+
 const Footer = () => {
     return (
-        <footer>
+        <footer className='main-footer'>
             Hecho con 🧡 por Stefania Diaz Valencia
         </footer>
     )
