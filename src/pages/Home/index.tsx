@@ -1,9 +1,10 @@
+import { CarouselMv } from "../../components/common"
 import { Layout } from "../../components/layout"
 
 const Home = () => {
     return (
         <Layout>
-            Home
+            <CarouselMv/>
         </Layout>
     )
 }
