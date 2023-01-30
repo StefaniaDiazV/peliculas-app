@@ -1,13 +1,13 @@
+import { Badge } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
 
 const NavBar = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand  className='' href="#home">Peliculas</Navbar.Brand>
+        <Navbar.Brand className='fs-2' href="#home">🎞 Peliculas</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav  className="ms-auto">
