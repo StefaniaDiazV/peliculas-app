@@ -1,7 +1,7 @@
-import { Badge } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
     return (
@@ -11,12 +11,12 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav  className="ms-auto">
-            <Nav.Link href="#link">Home</Nav.Link>
-            <Nav.Link href="#link">Ultimos lanzamientos</Nav.Link>
-            <Nav.Link href="#link">Populares</Nav.Link>
-            <Nav.Link href="#link">Busqueda</Nav.Link>
-            <Nav.Link href="#link">Login</Nav.Link>
-            <Nav.Link href="#link">Signup</Nav.Link>
+            <NavLink className="nav-link" to="/" >Home</NavLink>
+            <NavLink className="nav-link" to="/new-releases">Ultimos lanzamientos</NavLink>
+            <NavLink className="nav-link" to="/top-movies">Populares</NavLink>
+            <NavLink className="nav-link" to="/search">Busqueda</NavLink>
+            <NavLink className="nav-link" to="/login">Login</NavLink>
+            <NavLink className="nav-link" to="/signup">Signup</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
