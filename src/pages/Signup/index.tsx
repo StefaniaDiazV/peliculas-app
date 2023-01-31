@@ -1,9 +1,10 @@
+import { SignupForm } from "../../components/forms"
 import { Layout } from "../../components/layout"
 
 const SignUp = () => {
     return (
         <Layout>
-            Registro
+            <SignupForm/>
         </Layout>
     )
 }
