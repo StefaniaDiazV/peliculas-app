@@ -1,50 +1,35 @@
-import { FC } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import { backdrop_sizes, base_url } from "../../../constants";
+import { moviesServices } from "../../../services/movies";
+import { Movie } from "../../../types";
 
-type Props = {
+const CarouselMv = () => {
 
-}
+  const [movies, setMovies] = useState<Movie[]>([]);
 
-const CarouselMv: FC<Props> = () => {
+  useEffect(() => {
+    moviesServices.get("now_playing").then((data) => setMovies(data));
+  }, []);
+
   return (
-    <Carousel fade>
-      <Carousel.Item interval={500}>
+    <Carousel className="mb-5" fade>
+      {movies && movies.filter((v,index) => index < 6)
+      .map((movie) => (
+        <Carousel.Item key={movie.id} interval={500}>
         <img
           className="d-block w-100"
-          src="https://media.istockphoto.com/id/1313263696/es/foto/tiempo-en-familia-en-la-playa.jpg?s=612x612&w=is&k=20&c=ZQIQpJAHjjCe6pnCwNJhgeeqqn1JrcIGavSThzT68_I="
-          alt="First slide"
+          src={`${base_url}${backdrop_sizes[3]}${movie.backdrop_path}`}
+          alt={movie.title}
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={500}>
-        <img
-          className="d-block w-100"
-          src="https://media.istockphoto.com/id/1305329364/es/foto/pareja-jugando-en-la-playa.jpg?s=612x612&w=is&k=20&c=XHA8iSB4PLvxZ2QFnWMhOPPkk2XvTKYnHS8hYhdWdlk="
-          alt="Second slide"
-        />
-
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={500}>
-        <img
-          className="d-block w-100"
-          src="https://media.istockphoto.com/id/1313263659/es/foto/te-voy-a-tirar.jpg?s=612x612&w=is&k=20&c=heJBXHuaJj30iPjokrVOLV4fHar4Rauz7XCI1jWxOm4="
-          alt="Third slide"
-        />
-
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>{movie.title}</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            {movie.overview}
           </p>
         </Carousel.Caption>
       </Carousel.Item>
+      ))}
     </Carousel>
   );
 };
