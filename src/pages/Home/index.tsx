@@ -6,6 +6,7 @@ const Home = () => {
         <Layout>
             <CarouselMv/>
             <CardSlider listTitle="Peliculas Populares" search="popular"/>
+            <CardSlider listTitle="Mejores Peliculas" search="top_rated"/>
         </Layout>
     )
 }
