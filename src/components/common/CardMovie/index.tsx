@@ -9,7 +9,7 @@ type Props = {
 
 const CardMovie: FC<Props> = ({ title, img }) => {
   return (
-    <Card border="light" className="card">
+    <Card bg="dark" className="card">
       <Card.Img className="poster" src={img} alt={title} />
     </Card>
   );
