@@ -1,38 +1,66 @@
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Calendar, StarFill } from "react-bootstrap-icons";
+import { useParams } from "react-router-dom";
 import { Layout } from "../../components/layout";
+import { backdrop_sizes, base_url } from "../../constants";
+import { moviesServices } from "../../services/movies";
+import { MovieDetail } from "../../types";
 import "./style.scss";
 
 const Details = () => {
+  const [details, setDetails] = useState<MovieDetail>();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      moviesServices.getDetails(id).then((data) => setDetails(data));
+    }
+  });
+
   return (
     <Layout>
-      <Container className="details" fluid>
-        <div className="box-text">
-          <h2>Titulo</h2>
-          <div className="detail-top">
-            <span className="votes"><StarFill/> 35</span>
-            <span className="year"><Calendar/> 2022</span>
-            <span className="country">Corea</span>
+      {details && (
+        <Container className="details" fluid>
+          <div className="box-text">
+            <h2>{details.title}</h2>
+            <div className="detail-top">
+              <span className="votes">
+                <StarFill /> {details.vote_average.toFixed(1)}
+              </span>
+              <span className="year">
+                <Calendar /> {details.release_date.slice(0, 4)}
+              </span>
+              {details.production_countries[0] && (
+                <span className="country">
+                  {details.production_countries[0]?.name}
+                </span>
+              )}
+            </div>
+            <p>{details.overview}</p>
+            <div className="details-bottom">
+              <p>
+                Generos : {" "}
+                <span>{details.genres.map((gen) => gen.name).join(", ")} </span>
+              </p>
+              <p>
+                Productoras :{" "}
+                <span>
+                  {details.production_companies
+                    .filter((v, index) => index < 2)
+                    .map((gen) => gen.name)
+                    .join(", ")}
+                </span>
+              </p>
+            </div>
           </div>
-          <p>
-            Darcy and Tom gather their families for the ultimate destination
-            wedding but when the entire party is taken hostage, “’Til Death Do
-            Us Part” takes on a whole new meaning in this hilarious,
-            adrenaline-fueled adventure as Darcy and Tom must save their loved
-            ones—if they don’t kill each other first.
-          </p>
-          <div className="details-bottom">
-            <p>Generos : <span>Accion , comedia </span></p>
-            <p>Productoras: <span> Warner</span>
-            </p>
+          <div className="img-box">
+            <img
+              src={`${base_url}${backdrop_sizes[3]}${details.backdrop_path}`}
+            />
           </div>
-        </div>
-        <div className="img-box">
-          <img
-            src={`https://image.tmdb.org/t/p/w1000_and_h450_multi_faceshttps://www.themoviedb.org/t/p/original/ur7Z7E6t1B6fWMreXNMpsUTcBGX.jpg`}
-          />
-        </div>
-      </Container>
+        </Container>
+      )}
     </Layout>
   );
 };
