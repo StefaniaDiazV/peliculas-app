@@ -9,7 +9,7 @@ const get = async (params:string) => {
 
 const getDetails = async (id: string ) => {
   const response = await apiMovies.get(
-   `${id}`,
+   `movie/${id}`,
   )
   return response.data
 }

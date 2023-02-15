@@ -10,7 +10,7 @@ const CarouselMv = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    moviesServices.get("now_playing").then((data) => setMovies(data));
+    moviesServices.get("movie/now_playing").then((data) => setMovies(data));
   }, []);
 
   return (

@@ -5,8 +5,8 @@ const Home = () => {
     return (
         <Layout>
             <CarouselMv/>
-            <CardSlider listTitle="Peliculas Populares" search="popular"/>
-            <CardSlider listTitle="Mejores Peliculas" search="top_rated"/>
+            <CardSlider listTitle="Peliculas Populares" search="movie/popular"/>
+            <CardSlider listTitle="Mejores Peliculas" search="movie/top_rated"/>
         </Layout>
     )
 }

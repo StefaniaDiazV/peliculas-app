@@ -9,7 +9,7 @@ import { Movie } from "../../types";
 const Top = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
-    moviesServices.get("popular").then((data) => setMovies(data));
+    moviesServices.get("movie/popular").then((data) => setMovies(data));
   }, []);
 
   return (
