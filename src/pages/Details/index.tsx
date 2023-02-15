@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap";
+import { Calendar, StarFill } from "react-bootstrap-icons";
 import { Layout } from "../../components/layout";
 import "./style.scss";
 
@@ -9,9 +10,8 @@ const Details = () => {
         <div className="box-text">
           <h2>Titulo</h2>
           <div className="detail-top">
-            {/* //<StarFill/> */}
-            <span className="votes">35</span>
-            <span className="year"> 2022</span>
+            <span className="votes"><StarFill/> 35</span>
+            <span className="year"><Calendar/> 2022</span>
             <span className="country">Corea</span>
           </div>
           <p>
