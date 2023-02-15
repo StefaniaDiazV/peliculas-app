@@ -1,4 +1,4 @@
-import { Navigation, Pagination, A11y } from "swiper";
+import { Navigation, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.min.css";
@@ -24,9 +24,8 @@ const CardSlider: FC<Props> = ({ search, listTitle }) => {
     <div className="py-4 px-4 justify-content-center">
       <h2>{listTitle}</h2>
       <Swiper
-        modules={[Navigation, Pagination, A11y]}
+        modules={[Navigation, A11y]}
         navigation
-        pagination={{ clickable: true }}
         loop={true}
         breakpoints={breakpointsSlider}
       >
