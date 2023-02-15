@@ -7,4 +7,11 @@ const get = async (params:string) => {
   return mapToArray<Movie>(response.data.results)
 }
 
+const getDetails = async (id: string ) => {
+  const response = await apiMovies.get(
+   `movie/${id}`,
+  )
+  return response.data
+}
+
 export const moviesServices = { get }
