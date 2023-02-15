@@ -2,7 +2,7 @@ import { NavBar } from "../Navbar"
 
 const Header = () => {
     return (
-        <header className="main-header">
+        <header style={{zIndex: '5'}} className="main-header">
             <NavBar/>
         </header>
     )
