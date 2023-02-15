@@ -23,6 +23,7 @@ const Top = () => {
                 <CardMovie
                   title={movie.title}
                   img={`${base_url}${poster_sizes[3]}${movie.poster_path}`}
+                  id={movie.id}
                 />
               </Col>
             ))}
