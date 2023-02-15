@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Login, NewReleases, Search, SignUp, Top } from "./pages";
+import { Details, Home, Login, NewReleases, Search, SignUp, Top } from "./pages";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
               <Route path="search" element={<Search/>}/>
               <Route path="signup" element={<SignUp/>}/>
               <Route path="top-movies" element={<Top/>}/>
+              <Route path="details/:id"  element={<Details/>}/>
             </Route>
           </Routes>
       </BrowserRouter>
