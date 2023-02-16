@@ -2,24 +2,17 @@ import { Navigation, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/swiper-bundle.min.css";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { Movie } from "../../../types";
-import { moviesServices } from "../../../services/movies";
 import { CardMovie } from "../CardMovie";
 import { base_url, breakpointsSlider, poster_sizes } from "../../../constants";
 
 type Props = {
-  search: string;
+  movies: Movie[];
   listTitle: string;
 };
 
-const CardSlider: FC<Props> = ({ search, listTitle }) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    moviesServices.get(search).then((data) => setMovies(data));
-  }, []);
-
+const CardSlider: FC<Props> = ({ movies, listTitle }) => {
   return (
     <div className="py-4 px-4 justify-content-center">
       <h2>{listTitle}</h2>
