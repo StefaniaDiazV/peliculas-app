@@ -16,7 +16,7 @@ const Details = () => {
     if (id) {
       moviesServices.getDetails(id).then((data) => setDetails(data));
     }
-  });
+  }, []);
 
   return (
     <Layout>
