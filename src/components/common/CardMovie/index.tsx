@@ -13,7 +13,7 @@ const CardMovie: FC<Props> = ({ title, img, id }) => {
   const navigate = useNavigate()
   return (
     <Card bg="dark" className="card">
-      <Card.Img className="poster" src={img} alt={title} onClick={() => navigate(`/details/${id}`)} />
+      <Card.Img className="poster" src={img} alt={title} onClick={() => navigate(`/movies/${id}`)} />
     </Card>
   );
 };

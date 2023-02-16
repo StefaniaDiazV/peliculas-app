@@ -9,10 +9,10 @@ function App() {
               <Route index element={<Home/>}/>
               <Route path="login" element={<Login/>}/>
               <Route path="new-releases" element={<NewReleases/>}/>
-              <Route path="search" element={<Search/>}/>
               <Route path="signup" element={<SignUp/>}/>
               <Route path="top-movies" element={<Top/>}/>
-              <Route path="details/:id"  element={<Details/>}/>
+              <Route path='movies' element={<Search/>}/>
+              <Route path="movies/:id"  element={<Details/>}/>
             </Route>
           </Routes>
       </BrowserRouter>
