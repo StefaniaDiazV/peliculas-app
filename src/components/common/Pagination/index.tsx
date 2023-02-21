@@ -1,4 +1,5 @@
 import Pagination from "react-bootstrap/Pagination";
+import './style.scss'
 
 const PaginationMv = () => {
   return (
