@@ -4,17 +4,24 @@ import { PaginationMv } from "../../components/common";
 import { CardMovie } from "../../components/common/CardMovie";
 import { Layout } from "../../components/layout";
 import { base_url, poster_sizes } from "../../constants";
+import { usePagination } from "../../hooks";
 import { moviesServices } from "../../services/movies";
 import { Movie } from "../../types";
 
 const NewReleases = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  
+  const { setTotalPages, totalPages, handlePrev, handleNext, searchParams } = usePagination()
+  const currentPage = searchParams.get("page");
 
   useEffect(() => {
     moviesServices
-      .get("movie/upcoming")
-      .then((data) => setMovies(data.results));
-  }, []);
+      .get("movie/upcoming", currentPage)
+      .then((data) => {
+        setMovies(data.results)
+        setTotalPages(data.total_pages)
+      });
+  }, [currentPage]);
 
   return (
     <Layout>
@@ -32,7 +39,7 @@ const NewReleases = () => {
               </Col>
             ))}
         </Row>
-        <PaginationMv/>
+        <PaginationMv prev={handlePrev} next={handleNext} totalPages={totalPages} page={currentPage}/>
       </Container>
     </Layout>
   );
