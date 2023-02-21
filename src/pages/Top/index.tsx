@@ -9,7 +9,7 @@ import { Movie } from "../../types";
 const Top = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
-    moviesServices.get("popular").then((data) => setMovies(data));
+    moviesServices.get("movie/popular").then((data) => setMovies(data));
   }, []);
 
   return (
@@ -23,6 +23,7 @@ const Top = () => {
                 <CardMovie
                   title={movie.title}
                   img={`${base_url}${poster_sizes[3]}${movie.poster_path}`}
+                  id={movie.id}
                 />
               </Col>
             ))}

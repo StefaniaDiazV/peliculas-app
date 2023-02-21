@@ -11,7 +11,7 @@ const NewReleases = () => {
     const [movies, setMovies] = useState<Movie[]>([])
 
     useEffect(() => {
-        moviesServices.get("upcoming").then((data) => setMovies(data));
+        moviesServices.get("movie/upcoming").then((data) => setMovies(data));
       }, []);
 
     return (
@@ -25,6 +25,7 @@ const NewReleases = () => {
                 <CardMovie
                   title={movie.title}
                   img={`${base_url}${poster_sizes[3]}${movie.poster_path}`}
+                  id={movie.id}
                 />
               </Col>
             ))}

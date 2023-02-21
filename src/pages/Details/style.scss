@@ -1,0 +1,100 @@
+.details {
+    display: block;
+    margin: 0px auto;
+    padding: 5rem 1rem;
+    width: 100%;
+    color: rgb(224, 224, 224);
+    height: auto;
+    .box-text {
+      margin-left: 70px;
+      overflow: visible;
+      position: absolute;
+      max-width: 570px;
+      z-index: 2;
+      h2{
+        margin-bottom: .5rem;
+        text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+        line-height: 2.5rem;
+        font-weight: 700;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 0.4rem;
+      }
+      p{
+        font-size: 1.1rem;
+        max-height: 25rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+      .detail-top{
+        text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+        line-height: 2.5rem;
+        font-weight: 600;
+        display: block;
+        .year, .country{
+            margin-left: 10px;
+        }
+        .country{
+            display: inline;
+            border: 1px solid rgb(224, 224, 224);
+            border-radius: 13px;
+            padding: 0px 5px 0px 5px;
+        }
+      }
+      .details-bottom{
+        display: flex;
+        flex-direction: column;
+        text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+        line-height: 2.5rem;
+        font-weight: 400;
+        p{
+            margin: -3px;
+        }
+      }
+      }
+    .img-box {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 0px;
+      z-index: 1;
+      overflow: hidden;
+      &::before {
+        position: absolute;
+        left: 0px;
+        top: 74px;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 2;
+      }
+      &::after {
+        background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(26, 25, 31) 100%);
+        position: absolute;
+        left: 0px;
+        top: 74px;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        z-index: 3;
+        content: "";
+      }
+      img {
+        position: absolute;
+        left: 0px;
+        top: 74px;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        z-index: 1;
+        padding-top: 0px;
+        overflow: hidden;
+      }
+    }
+  }

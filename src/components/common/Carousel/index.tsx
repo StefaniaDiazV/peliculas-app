@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { FC } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { backdrop_sizes, base_url } from "../../../constants";
-import { moviesServices } from "../../../services/movies";
 import { Movie } from "../../../types";
 import './style.scss'
 
-const CarouselMv = () => {
+type Props = {
+  movies : Movie[]
+}
 
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    moviesServices.get("now_playing").then((data) => setMovies(data));
-  }, []);
-
+const CarouselMv: FC<Props> = ({movies}) => {
   return (
     <Carousel className="mb-5" fade>
       {movies && movies.filter((v,index) => index < 6)
