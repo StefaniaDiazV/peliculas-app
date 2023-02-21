@@ -7,5 +7,8 @@ const apiMovies = axios.create({
     }
 })
 
+const apiUser = axios.create({
+    baseURL: "https://peliculas-app-6357b-default-rtdb.firebaseio.com"
+})
 
-export { apiMovies }
+export { apiMovies, apiUser }
