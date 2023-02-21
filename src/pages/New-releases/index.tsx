@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react"
-import { Col, Container, Row } from "react-bootstrap"
-import { CardMovie } from "../../components/common/CardMovie"
-import { Layout } from "../../components/layout"
-import { base_url, poster_sizes } from "../../constants"
-import { moviesServices } from "../../services/movies"
-import { Movie } from "../../types"
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { PaginationMv } from "../../components/common";
+import { CardMovie } from "../../components/common/CardMovie";
+import { Layout } from "../../components/layout";
+import { base_url, poster_sizes } from "../../constants";
+import { moviesServices } from "../../services/movies";
+import { Movie } from "../../types";
 
 const NewReleases = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
 
-    const [movies, setMovies] = useState<Movie[]>([])
+  useEffect(() => {
+    moviesServices
+      .get("movie/upcoming")
+      .then((data) => setMovies(data.results));
+  }, []);
 
-    useEffect(() => {
-        moviesServices.get("movie/upcoming").then((data) => setMovies(data.results));
-      }, []);
-
-    return (
-        <Layout>
-            <Container fluid className="p-4">
+  return (
+    <Layout>
+      <Container fluid className="p-4">
         <h2>Ultimos lanzamientos</h2>
         <Row>
           {movies &&
@@ -30,9 +32,10 @@ const NewReleases = () => {
               </Col>
             ))}
         </Row>
+        <PaginationMv/>
       </Container>
-        </Layout>
-    )
-}
+    </Layout>
+  );
+};
 
-export { NewReleases }
+export { NewReleases };
