@@ -12,4 +12,17 @@ const getDetails = async (id: string ) => {
   return response.data
 }
 
-export const moviesServices = { get, getDetails }
+const searcher = async (title: string | null, page: string | null = '1' ) => {
+  const response = await apiMovies.get(
+    "search/movie",
+    {
+      params: {
+        query:title,
+        page: page,
+      },
+    }
+  )
+  return response.data ;
+};
+
+export const moviesServices = { get, getDetails, searcher }
