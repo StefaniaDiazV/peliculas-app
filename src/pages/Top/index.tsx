@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { PaginationMv } from "../../components/common";
 import { CardMovie } from "../../components/common/CardMovie";
 import { Layout } from "../../components/layout";
 import { base_url, poster_sizes } from "../../constants";
+import { usePagination } from "../../hooks";
 import { moviesServices } from "../../services/movies";
 import { Movie } from "../../types";
 
 const Top = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, searchParams} = usePagination()
+
   useEffect(() => {
-    moviesServices.get("movie/popular").then((data) => setMovies(data.results));
-  }, []);
+    const currentPage = searchParams.get("page") ;
+    if(currentPage){
+      setPage(currentPage)
+    }
+    moviesServices.get("movie/popular", currentPage).then((data) =>{ 
+      setMovies(data.results)
+      setTotalPages(data.total_pages)
+    });
+  }, [searchParams]);
 
   return (
     <Layout>
@@ -28,6 +39,7 @@ const Top = () => {
               </Col>
             ))}
         </Row>
+        <PaginationMv first={handleFirst} prev={handlePrev} next={handleNext} last={handleLast} totalPages={totalPages} page={page}/>
       </Container>
     </Layout>
   );
