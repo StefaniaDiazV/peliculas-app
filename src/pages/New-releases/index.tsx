@@ -10,18 +10,21 @@ import { Movie } from "../../types";
 
 const NewReleases = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  
-  const { setTotalPages, totalPages, handlePrev, handleNext, searchParams } = usePagination()
-  const currentPage = searchParams.get("page");
+  const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, searchParams} = usePagination()
+ 
 
   useEffect(() => {
+    const currentPage = searchParams.get("page") ;
+    if(currentPage){
+      setPage(currentPage)
+    }
     moviesServices
       .get("movie/upcoming", currentPage)
       .then((data) => {
         setMovies(data.results)
         setTotalPages(data.total_pages)
       });
-  }, [currentPage]);
+  }, [searchParams]);
 
   return (
     <Layout>
@@ -39,7 +42,7 @@ const NewReleases = () => {
               </Col>
             ))}
         </Row>
-        <PaginationMv prev={handlePrev} next={handleNext} totalPages={totalPages} page={currentPage}/>
+        <PaginationMv first={handleFirst} prev={handlePrev} next={handleNext} last={handleLast} totalPages={totalPages} page={page}/>
       </Container>
     </Layout>
   );

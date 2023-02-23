@@ -6,11 +6,13 @@ import "./style.scss";
 type Props = {
   page: string | null;
   totalPages: string;
+  first: () => void
   next: (page: string | null) => void;
   prev: (page: string | null) => void;
+  last: (totalPages: string) => void
 };
 
-const PaginationMv: FC<Props> = ({ totalPages, page, next, prev }) => {
+const PaginationMv: FC<Props> = ({ totalPages, page, next, prev, first, last }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const PaginationMv: FC<Props> = ({ totalPages, page, next, prev }) => {
       <Pagination size="lg">
         <Pagination.Item
           disabled={page === "1"}
-          onClick={() => setSearchParams({ page: "1" })}
+          onClick={() => first()}
         >
           {1}
         </Pagination.Item>
@@ -34,7 +36,7 @@ const PaginationMv: FC<Props> = ({ totalPages, page, next, prev }) => {
         />
         <Pagination.Item
           disabled={page == totalPages}
-          onClick={() => setSearchParams({ page: totalPages })}
+          onClick={() => last(totalPages)}
         >
           {totalPages}
         </Pagination.Item>
