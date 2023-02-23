@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import "./style.scss";
 
 type Props = {
-  page: string | null;
+  page: string;
   totalPages: string;
   first: () => void
   next: (page: string | null) => void;
@@ -16,7 +16,7 @@ const PaginationMv: FC<Props> = ({ totalPages, page, next, prev, first, last }) 
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setSearchParams({ page: "1" });
+    setSearchParams({ page: '1' });
   }, []);
 
   return (
@@ -31,14 +31,14 @@ const PaginationMv: FC<Props> = ({ totalPages, page, next, prev, first, last }) 
         <Pagination.Prev disabled={page === "1"} onClick={() => prev(page)} />
         <Pagination.Item>{page}</Pagination.Item>
         <Pagination.Next
-          disabled={page == totalPages}
+          disabled={page === totalPages || page === '500'}
           onClick={() => next(page)}
         />
         <Pagination.Item
-          disabled={page == totalPages}
+          disabled={page === totalPages || page === '500'}
           onClick={() => last(totalPages)}
         >
-          {totalPages}
+          {Number(totalPages) < 500 ? totalPages : 500}
         </Pagination.Item>
       </Pagination>
     </div>

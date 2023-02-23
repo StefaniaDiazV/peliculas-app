@@ -23,7 +23,9 @@ const usePagination = () => {
   };
 
   const handleLast = (totalPages: string) => {
-    setSearchParams({ page: totalPages });
+    let calc = Number(totalPages) < 500 ? totalPages : 500;
+    let total =  calc.toString()
+    setSearchParams({ page: total });
   };
 
   return {
