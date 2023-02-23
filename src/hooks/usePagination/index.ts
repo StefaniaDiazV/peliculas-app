@@ -5,6 +5,11 @@ const usePagination = () => {
     const [totalPages, setTotalPages] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
 
+
+    const handleFirst = () => {
+      setSearchParams({ page: "1" })
+    } 
+
     const handleNext = (page: string | null) => {
           let calc = Number(page) + 1;
           let text = String(calc);
@@ -18,7 +23,11 @@ const usePagination = () => {
           setSearchParams({ page: text });
       };
 
-    return { handlePrev, handleNext, totalPages, setTotalPages, searchParams };
+      const handleLast = (totalPages: string) => {
+        setSearchParams({ page: totalPages })
+      }
+
+    return { handleFirst, handlePrev, handleNext, handleLast, totalPages, setTotalPages, searchParams };
   };
 
   export { usePagination }
