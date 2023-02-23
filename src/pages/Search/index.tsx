@@ -1,9 +1,9 @@
+import { Layout } from "../../components/layout";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { CardMovie } from "../../components/common/CardMovie";
 import { SearchForm } from "../../components/forms";
-import { Layout } from "../../components/layout";
 import { base_url, poster_sizes } from "../../constants";
 import { moviesServices } from "../../services/movies";
 import { Movie, search } from "../../types";
