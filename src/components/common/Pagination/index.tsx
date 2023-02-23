@@ -13,11 +13,6 @@ type Props = {
 };
 
 const PaginationMv: FC<Props> = ({ totalPages, page, next, prev, first, last }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    setSearchParams({ page: '1' });
-  }, []);
 
   return (
     <div className="pagination">

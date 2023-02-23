@@ -14,15 +14,13 @@ const NewReleases = () => {
  
 
   useEffect(() => {
-    const currentPage = searchParams.get("page") ;
-    if(currentPage){
-      setPage(currentPage)
-    }
+    const currentPage = searchParams.get("page");
     moviesServices
-      .get("movie/upcoming", currentPage)
+      .get("movie/upcoming", currentPage || '1')
       .then((data) => {
         setMovies(data.results)
         setTotalPages(data.total_pages)
+        setPage(data.page)
       });
   }, [searchParams]);
 

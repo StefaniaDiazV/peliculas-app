@@ -1,6 +1,6 @@
 import { apiMovies } from "../../utils/axios";
 
-const get = async (params: string, page: string | null = "1") => {
+const get = async (params: string, page?: string) => {
   const response = await apiMovies.get(params, {
     params: {
       page: page,

@@ -17,7 +17,7 @@ const Top = () => {
     if(currentPage){
       setPage(currentPage)
     }
-    moviesServices.get("movie/popular", currentPage).then((data) =>{ 
+    moviesServices.get("movie/popular", currentPage || '1').then((data) =>{ 
       setMovies(data.results)
       setTotalPages(data.total_pages)
     });
