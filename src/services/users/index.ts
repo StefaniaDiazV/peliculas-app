@@ -1,8 +1,8 @@
 import { SignUpPayload } from "../../types";
-import { apiUser } from "../../utils/axios";
+import { api } from "../../utils/axios";
 
 const add = async (user: SignUpPayload) => {
-    const response = await apiUser.post("/users.json", user);
+    const response = await api.post("/users.json", user);
     return response.data;
   };
 
