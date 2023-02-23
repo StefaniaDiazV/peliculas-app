@@ -24,6 +24,24 @@ export type Movie = {
     production_countries : Partial<gender>[]
   };
 
- export type search = {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  export type search = {
     title : string
   }
