@@ -11,9 +11,9 @@ const Home = () => {
     const [topRated, setTopRated] = useState<Movie[]>([]);
 
     useEffect(() => {
-        moviesServices.get("movie/now_playing").then((data) => setnowPlaying(data));
-        moviesServices.get("movie/popular").then((data) => setpopular(data));
-        moviesServices.get("movie/top_rated").then((data) => setTopRated(data));
+        moviesServices.get("movie/now_playing").then((data) => setnowPlaying(data.results));
+        moviesServices.get("movie/popular").then((data) => setpopular(data.results));
+        moviesServices.get("movie/top_rated").then((data) => setTopRated(data.results));
     }, []);
 
     return (

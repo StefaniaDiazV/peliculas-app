@@ -11,7 +11,7 @@ const NewReleases = () => {
     const [movies, setMovies] = useState<Movie[]>([])
 
     useEffect(() => {
-        moviesServices.get("movie/upcoming").then((data) => setMovies(data));
+        moviesServices.get("movie/upcoming").then((data) => setMovies(data.results));
       }, []);
 
     return (
