@@ -14,12 +14,10 @@ const Top = () => {
 
   useEffect(() => {
     const currentPage = searchParams.get("page") ;
-    if(currentPage){
-      setPage(currentPage)
-    }
     moviesServices.get("movie/popular", currentPage || '1').then((data) =>{ 
       setMovies(data.results)
       setTotalPages(data.total_pages)
+      setPage(data.page)
     });
   }, [searchParams]);
 
