@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchBts } from "react-bootstrap-icons";
 import { search } from "../../../types";
@@ -11,13 +11,12 @@ const Search: FC<Props> = ({onSearch}) => {
 
   const [fields, setFields] = useState({title: ""})
 
-  const handleSubmit = (e:any) => {
-      e.preventDefault()
-      onSearch(fields)
-  }
+  useEffect(() => {
+    onSearch(fields)
+  },[fields])
 
   return (
-    <Form onChange={handleSubmit}>
+    <Form>
       <InputGroup className="mb-3 p-5">
         <InputGroup.Text id="basic-addon1"><SearchBts/></InputGroup.Text>
         <Form.Control
