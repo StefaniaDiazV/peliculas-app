@@ -24,6 +24,11 @@ export type Movie = {
     production_countries : Partial<gender>[]
   };
 
+
+  export type search = {
+    title : string
+  }
+  
   export type User = {
     id: string;
     name: string;
@@ -36,3 +41,4 @@ export type Movie = {
   
   export type SignUpForm = Omit<User, "id" | "birthdate"> & { birthdate: Date };
   export type SignUpPayload = SignUpForm;
+
