@@ -1,22 +1,32 @@
-import { useEffect, useState } from "react"
-import { Col, Container, Row } from "react-bootstrap"
-import { CardMovie } from "../../components/common/CardMovie"
-import { Layout } from "../../components/layout"
-import { base_url, poster_sizes } from "../../constants"
-import { moviesServices } from "../../services/movies"
-import { Movie } from "../../types"
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { PaginationMv } from "../../components/common";
+import { CardMovie } from "../../components/common/CardMovie";
+import { Layout } from "../../components/layout";
+import { base_url, poster_sizes } from "../../constants";
+import { usePagination } from "../../hooks";
+import { moviesServices } from "../../services/movies";
+import { Movie } from "../../types";
 
 const NewReleases = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, searchParams} = usePagination()
+ 
 
-    const [movies, setMovies] = useState<Movie[]>([])
+  useEffect(() => {
+    const currentPage = searchParams.get("page");
+    moviesServices
+      .get("movie/upcoming", currentPage || '1')
+      .then((data) => {
+        setMovies(data.results)
+        setTotalPages(data.total_pages)
+        setPage(data.page)
+      });
+  }, [searchParams]);
 
-    useEffect(() => {
-        moviesServices.get("movie/upcoming").then((data) => setMovies(data.results));
-      }, []);
-
-    return (
-        <Layout>
-            <Container fluid className="p-4">
+  return (
+    <Layout>
+      <Container fluid className="p-4">
         <h2>Ultimos lanzamientos</h2>
         <Row>
           {movies &&
@@ -30,9 +40,10 @@ const NewReleases = () => {
               </Col>
             ))}
         </Row>
+        <PaginationMv first={handleFirst} prev={handlePrev} next={handleNext} last={handleLast} totalPages={totalPages} page={page}/>
       </Container>
-        </Layout>
-    )
-}
+    </Layout>
+  );
+};
 
-export { NewReleases }
+export { NewReleases };
