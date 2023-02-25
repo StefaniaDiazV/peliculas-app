@@ -1,15 +1,40 @@
+import { FC, useEffect } from "react";
 import Pagination from "react-bootstrap/Pagination";
-import './style.scss'
+import { useSearchParams } from "react-router-dom";
+import "./style.scss";
 
-const PaginationMv = () => {
+type Props = {
+  page: string;
+  totalPages: string;
+  first: () => void
+  next: (page: string | null) => void;
+  prev: (page: string | null) => void;
+  last: (totalPages: string) => void
+};
+
+const PaginationMv: FC<Props> = ({ totalPages, page, next, prev, first, last }) => {
+
   return (
     <div className="pagination">
       <Pagination size="lg">
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Prev />
-        <Pagination.Item>{15}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Item>{30}</Pagination.Item>
+        <Pagination.Item
+          disabled={page === "1"}
+          onClick={() => first()}
+        >
+          {1}
+        </Pagination.Item>
+        <Pagination.Prev disabled={page === "1"} onClick={() => prev(page)} />
+        <Pagination.Item>{page}</Pagination.Item>
+        <Pagination.Next
+          disabled={page === totalPages || page === '500'}
+          onClick={() => next(page)}
+        />
+        <Pagination.Item
+          disabled={page === totalPages || page === '500'}
+          onClick={() => last(totalPages)}
+        >
+          {Number(totalPages) < 500 ? totalPages : 500}
+        </Pagination.Item>
       </Pagination>
     </div>
   );
