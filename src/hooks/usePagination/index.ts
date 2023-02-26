@@ -3,29 +3,29 @@ import { useSearchParams } from "react-router-dom";
 
 const usePagination = () => {
   const [totalPages, setTotalPages] = useState("");
-  const [page, setPage] = useState('')
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState('');
+  const [params, setParams] = useState({ title: "", page: "1" });
 
   const handleFirst = () => {
-    setSearchParams({ page: "1" });
+    setParams(prevState => ({...prevState, page : '1'}));
   };
 
   const handleNext = (page: string | null) => {
     let calc = Number(page) + 1;
     let text = String(calc);
-    setSearchParams({ page: text });
+    setParams(prevState => ({...prevState, page : text}));
   };
 
   const handlePrev = (page: string | null) => {
     let calc = Number(page) - 1;
     let text = String(calc);
-    setSearchParams({ page: text });
+    setParams(prevState => ({...prevState, page : text}));
   };
 
   const handleLast = (totalPages: string) => {
     let calc = Number(totalPages) < 500 ? totalPages : 500;
     let total =  calc.toString()
-    setSearchParams({ page: total });
+    setParams(prevState => ({...prevState, page : total}))
   };
 
   return {
@@ -37,7 +37,8 @@ const usePagination = () => {
     setTotalPages,
     page,
     setPage,
-    searchParams,
+    params,
+    setParams
   };
 };
 

@@ -7,21 +7,28 @@ import { SearchForm } from "../../components/forms";
 import { base_url, poster_sizes } from "../../constants";
 import { moviesServices } from "../../services/movies";
 import { Movie, search } from "../../types";
+import { usePagination } from "../../hooks";
+import { PaginationMv } from "../../components/common";
 
 
 const Search = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { setTotalPages, totalPages, handlePrev, handleNext, params, setParams, handleLast, handleFirst , page, setPage } = usePagination()
 
   useEffect(() => {
+    setSearchParams(params);
+    const currentPage = searchParams.get("page");
     const title = searchParams.get('title')
-    moviesServices.searcher(title).then((data) => {
+    moviesServices.searcher(title, currentPage).then((data) => {
       setMovies(data.results)
+      setTotalPages(data.total_pages)
+      setPage(data.page)
     })
-  },[searchParams])
+  },[searchParams, params])
 
   const searchQuery = (params: search ) => {
-    setSearchParams(params)
+    setParams(prevState => ({...prevState, title : params.title}))
   }
 
   return (
@@ -39,6 +46,7 @@ const Search = () => {
             </Col>
           ))}
         </Row>
+        <PaginationMv first={handleFirst} prev={handlePrev} next={handleNext} totalPages={totalPages} page={page} last={handleLast}/>
       </Container>
     </Layout>
   );
