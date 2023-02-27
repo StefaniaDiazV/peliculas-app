@@ -31,7 +31,30 @@ const useMe = () => {
       });
   };
 
-  return { me , signup, login}
+  const loginWithToken = async () => {
+    console.info("loginWithToken");
+    const token = localStorage.getItem("token");
+
+    if (token && !me) {
+      const user = await userServices.getBy("token", token);
+      if (user) {
+        setMe({
+          id: user.id,
+          name: user.name,
+          lastname: user.lastname,
+          email: user.email,
+        });
+      }
+    }
+  };
+
+  const logout = async () => {
+    console.info("logout");
+    await userServices.update({ id: me?.id, token: null });
+    setMe(undefined);
+  };
+
+  return { me , signup, login, loginWithToken, logout}
 
 };
 
