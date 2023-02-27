@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 import { PaginationMv } from "../../components/common";
 import { CardMovie } from "../../components/common/CardMovie";
 import { Layout } from "../../components/layout";
@@ -10,10 +11,12 @@ import { Movie } from "../../types";
 
 const NewReleases = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, searchParams} = usePagination()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, params} = usePagination()
  
 
   useEffect(() => {
+    setSearchParams({page:params.page});
     const currentPage = searchParams.get("page");
     moviesServices
       .get("movie/upcoming", currentPage || '1')
@@ -22,7 +25,7 @@ const NewReleases = () => {
         setTotalPages(data.total_pages)
         setPage(data.page)
       });
-  }, [searchParams]);
+  }, [searchParams, params]);
 
   return (
     <Layout>

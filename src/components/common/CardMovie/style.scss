@@ -1,19 +1,55 @@
 .card {
-    width: 15rem;
+    width: auto;
+    position: relative;
     margin-right: 1.5rem;
-    margin-bottom: 1.5rem;
     overflow: hidden;
+    border-radius: 3px;
+    margin-bottom: 0px;
+    height: 100%;
+    min-height: 20px;
+    background-color: rgb(33, 32, 38);
     cursor: pointer;
     .poster {
-        img {
-            width: 100%;
-        }
+      img {
+        width: 100%;
+        position: relative;
+        border-radius: 3px;
+        height: 100%;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0px;
+      top: 0%;
+      right: 0px;
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 100%);
     }
     &:hover {
-            img {
-                transform: scale(1.1);
-                transition-duration: 0.6s;
-            }
- 
+      img {
+        transform: scale(1.1);
+        transition-duration: 0.6s;
+      }
     }
-}
+    .title {
+      max-width: 100%;
+      position: absolute;
+      z-index: 3;
+      text-align: center;
+      left: 0px;
+      right: 0px;
+      bottom: 0.5rem;
+      padding: 0px 0.5rem;
+      border-radius: 0px 0px 10px 10px;
+      font-size: 1rem;
+      line-height: 1rem;
+      color: rgb(255, 255, 255);
+      font-weight: 700;
+      margin: 0px;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+  

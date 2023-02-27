@@ -18,19 +18,19 @@ const PaginationMv: FC<Props> = ({ totalPages, page, next, prev, first, last }) 
     <div className="pagination">
       <Pagination size="lg">
         <Pagination.Item
-          disabled={page === "1"}
+          disabled={page == "1"}
           onClick={() => first()}
         >
           {1}
         </Pagination.Item>
-        <Pagination.Prev disabled={page === "1"} onClick={() => prev(page)} />
+        <Pagination.Prev disabled={page == "1"} onClick={() => prev(page)} />
         <Pagination.Item>{page}</Pagination.Item>
         <Pagination.Next
-          disabled={page === totalPages || page === '500'}
+          disabled={page === totalPages || page == '500'}
           onClick={() => next(page)}
         />
         <Pagination.Item
-          disabled={page === totalPages || page === '500'}
+          disabled={page === totalPages || page == '500'}
           onClick={() => last(totalPages)}
         >
           {Number(totalPages) < 500 ? totalPages : 500}
