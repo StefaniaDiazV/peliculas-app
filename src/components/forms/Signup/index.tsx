@@ -4,16 +4,15 @@ import { userServices } from "../../../services/users";
 import { SignUpForm } from "../../../types";
 import { useForm } from "react-hook-form";
 import './style.scss'
+import { useMe } from "../../../hooks";
 
 const Signup = () => {
 
   const { register, handleSubmit } = useForm<SignUpForm>();
+  const { signup } = useMe();
 
   const onSubmit = (data: SignUpForm) => {
-    userServices.add({
-      ...data,
-      birthdate: new Date(data.birthdate),
-    });
+   signup(data)
   };
 
   return (
