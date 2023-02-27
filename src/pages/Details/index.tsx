@@ -4,11 +4,12 @@ import { Calendar, StarFill } from "react-bootstrap-icons";
 import { useParams } from "react-router-dom";
 import { Layout } from "../../components/layout";
 import { backdrop_sizes, base_url } from "../../constants";
+import { withAuth } from "../../hoc";
 import { moviesServices } from "../../services/movies";
 import { MovieDetail } from "../../types";
 import "./style.scss";
 
-const Details = () => {
+const DetailsPage = () => {
   const [details, setDetails] = useState<MovieDetail>();
   const { id } = useParams();
 
@@ -65,4 +66,4 @@ const Details = () => {
   );
 };
 
-export { Details };
+export const Details = withAuth(DetailsPage);

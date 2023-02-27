@@ -5,11 +5,12 @@ import { PaginationMv } from "../../components/common";
 import { CardMovie } from "../../components/common/CardMovie";
 import { Layout } from "../../components/layout";
 import { base_url, poster_sizes } from "../../constants";
+import { withAuth } from "../../hoc";
 import { usePagination } from "../../hooks";
 import { moviesServices } from "../../services/movies";
 import { Movie } from "../../types";
 
-const NewReleases = () => {
+const NewReleasesPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, params} = usePagination()
@@ -49,4 +50,4 @@ const NewReleases = () => {
   );
 };
 
-export { NewReleases };
+export const NewReleases = withAuth( NewReleasesPage) ;
