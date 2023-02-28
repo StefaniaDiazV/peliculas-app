@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { CardSlider, CarouselMv } from "../../components/common"
 import { Layout } from "../../components/layout"
+import { withAuth } from "../../hoc";
 import { moviesServices } from "../../services/movies";
 import { Movie } from "../../types";
 
-const Home = () => {
+const HomePage = () => {
 
     const [nowPlaying, setnowPlaying] = useState<Movie[]>([]);
     const [popular, setpopular] = useState<Movie[]>([]);
@@ -25,4 +26,4 @@ const Home = () => {
     )
 }
 
-export { Home }
+export const Home = withAuth(HomePage) 

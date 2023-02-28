@@ -9,9 +9,10 @@ import { moviesServices } from "../../services/movies";
 import { Movie, search } from "../../types";
 import { usePagination } from "../../hooks";
 import { PaginationMv } from "../../components/common";
+import { withAuth } from "../../hoc";
 
 
-const Search = () => {
+const SearchPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const { setTotalPages, totalPages, handlePrev, handleNext, params, setParams, handleLast, handleFirst , page, setPage } = usePagination()
@@ -52,4 +53,4 @@ const Search = () => {
   );
 };
 
-export { Search };
+export const Search = withAuth(SearchPage);
