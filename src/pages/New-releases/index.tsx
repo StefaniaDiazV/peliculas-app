@@ -15,9 +15,11 @@ const NewReleasesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { setTotalPages, totalPages, page, setPage, handleFirst, handlePrev, handleNext, handleLast, params} = usePagination()
  
-
   useEffect(() => {
     setSearchParams({page:params.page});
+  }, [params])
+
+  useEffect(() => {
     const currentPage = searchParams.get("page");
     moviesServices
       .get("movie/upcoming", currentPage || '1')
@@ -26,7 +28,7 @@ const NewReleasesPage = () => {
         setTotalPages(data.total_pages)
         setPage(data.page)
       });
-  }, [searchParams, params]);
+  }, [searchParams]);
 
   return (
     <Layout>
