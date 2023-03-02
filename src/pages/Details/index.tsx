@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Calendar, StarFill } from "react-bootstrap-icons";
 import { useParams } from "react-router-dom";
@@ -6,16 +6,21 @@ import { Layout } from "../../components/layout";
 import { backdrop_sizes, base_url, poster_sizes } from "../../constants";
 import { withAuth } from "../../hoc";
 import { moviesServices } from "../../services/movies";
-import { MovieDetail } from "../../types";
+import { MovieDetail, video } from "../../types";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import "./style.scss";
 
 const DetailsPage = () => {
   const [details, setDetails] = useState<MovieDetail>();
+  const [trailer, setTrailer] = useState<video>();
+  const [show, setShow] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     if (id) {
       moviesServices.getDetails(id).then((data) => setDetails(data));
+      moviesServices.getTrailer(id).then((data) => setTrailer(data));
     }
   }, []);
 
@@ -24,7 +29,8 @@ const DetailsPage = () => {
       {details && (
         <Container className="details" fluid>
           <div className="box-details">
-            <img className="poster"
+            <img
+              className="poster"
               src={`${base_url}${poster_sizes[3]}${details.poster_path}`}
             />
           </div>
@@ -46,7 +52,7 @@ const DetailsPage = () => {
             <p>{details.overview}</p>
             <div className="details-bottom">
               <p>
-                Generos : {" "}
+                Generos :{" "}
                 <span>{details.genres.map((gen) => gen.name).join(", ")} </span>
               </p>
               <p>
@@ -58,6 +64,15 @@ const DetailsPage = () => {
                     .join(", ")}
                 </span>
               </p>
+              {trailer && (
+                <Button
+                  className="btn-trailer"
+                  variant="primary"
+                  onClick={() => setShow(true)}
+                >
+                  Ver Trailer
+                </Button>
+              )}
             </div>
           </div>
           <div className="img-box">
@@ -66,6 +81,29 @@ const DetailsPage = () => {
             />
           </div>
         </Container>
+      )}
+      {trailer && (
+        <Modal
+          size="lg"
+          show={show}
+          onHide={() => setShow(false)}
+          dialogClassName="modal-100w"
+          aria-labelledby="example-custom-modal-styling-title"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-custom-modal-styling-title">
+              {trailer.name}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <iframe
+              src={`https://www.youtube.com/embed/${trailer.key}`}
+              height="400px"
+              width="100%"
+              title="video"
+            ></iframe>
+          </Modal.Body>
+        </Modal>
       )}
     </Layout>
   );
