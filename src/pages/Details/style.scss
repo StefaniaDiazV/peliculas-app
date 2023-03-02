@@ -1,16 +1,21 @@
 .details {
     display: block;
+    display: flex;
+    flex-direction: row;
     margin: 0px auto;
-    padding: 5rem 1rem;
+    padding: 2rem 1rem;
     width: 100%;
     color: rgb(224, 224, 224);
     height: auto;
-    .box-text {
+    .box-details{
       margin-left: 70px;
       overflow: visible;
-      position: absolute;
+      position: relative;
       max-width: 570px;
       z-index: 2;
+      .poster{
+        border-radius: 20px;
+      }
       h2{
         margin-bottom: .5rem;
         text-shadow: rgb(0, 0, 0) 1px 1px 1px;
@@ -75,7 +80,7 @@
         z-index: 2;
       }
       &::after {
-        background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(26, 25, 31) 100%);
+        background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(26, 25, 31) 85%);
         position: absolute;
         left: 0px;
         top: 74px;
