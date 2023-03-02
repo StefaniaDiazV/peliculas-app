@@ -1,3 +1,4 @@
+import { video } from "../../types";
 import { apiMovies } from "../../utils/axios";
 
 const get = async (params: string, page?: string) => {
@@ -26,5 +27,11 @@ const searcher = async (title: string | null, page: string | null = '1' ) => {
   )
   return response.data ;
 };
+ 
+const getTrailer = async (id: string) => {
+  const response = await apiMovies.get(`movie/${id}/videos`);
+  const trailer = response.data.results.find((video:video) => video.type === 'Trailer');
+  return trailer;
+}
 
-export const moviesServices = { get, getDetails, searcher }
+export const moviesServices = { get, getDetails, searcher, getTrailer }
