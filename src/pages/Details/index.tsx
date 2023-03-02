@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { Calendar, StarFill } from "react-bootstrap-icons";
 import { useParams } from "react-router-dom";
 import { Layout } from "../../components/layout";
-import { backdrop_sizes, base_url } from "../../constants";
+import { backdrop_sizes, base_url, poster_sizes } from "../../constants";
 import { withAuth } from "../../hoc";
 import { moviesServices } from "../../services/movies";
 import { MovieDetail } from "../../types";
@@ -23,7 +23,12 @@ const DetailsPage = () => {
     <Layout>
       {details && (
         <Container className="details" fluid>
-          <div className="box-text">
+          <div className="box-details">
+            <img className="poster"
+              src={`${base_url}${poster_sizes[3]}${details.poster_path}`}
+            />
+          </div>
+          <div className="box-details">
             <h2>{details.title}</h2>
             <div className="detail-top">
               <span className="votes">
