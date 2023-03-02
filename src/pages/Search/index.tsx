@@ -19,6 +19,9 @@ const SearchPage = () => {
 
   useEffect(() => {
     setSearchParams(params);
+  }, [params])
+
+  useEffect(() => {
     const currentPage = searchParams.get("page");
     const title = searchParams.get('title')
     moviesServices.searcher(title, currentPage).then((data) => {
@@ -26,7 +29,7 @@ const SearchPage = () => {
       setTotalPages(data.total_pages)
       setPage(data.page)
     })
-  },[searchParams, params])
+  },[searchParams])
 
   const searchQuery = (params: search ) => {
     setParams(prevState => ({...prevState, title : params.title}))
