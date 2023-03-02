@@ -17,13 +17,16 @@ const TopPage = () => {
 
   useEffect(() => {
     setSearchParams({page:params.page});
+  }, [params])
+
+  useEffect(() => {
     const currentPage = searchParams.get("page") ;
     moviesServices.get("movie/popular", currentPage || '1').then((data) =>{ 
       setMovies(data.results)
       setTotalPages(data.total_pages)
       setPage(data.page)
     });
-  }, [searchParams, params]);
+  }, [searchParams]);
 
   return (
     <Layout>
