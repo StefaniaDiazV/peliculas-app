@@ -57,7 +57,7 @@ const DetailsPage = () => {
           </div>
           <div className="img-box">
             <img
-              src={`${base_url}${backdrop_sizes[3]}${details.backdrop_path}`}
+              src={details.backdrop_path ? `${base_url}${backdrop_sizes[3]}${details.backdrop_path}` : '/img/posters-de-peliculas.png' }
             />
           </div>
         </Container>
