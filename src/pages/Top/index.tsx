@@ -38,7 +38,7 @@ const TopPage = () => {
               <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
                 <CardMovie
                   title={movie.title}
-                  img={`${base_url}${poster_sizes[3]}${movie.poster_path}`}
+                  img={movie.poster_path ? `${base_url}${poster_sizes[3]}${movie.poster_path}` : '/img/no-poster.png'}
                   id={movie.id}
                 />
               </Col>
