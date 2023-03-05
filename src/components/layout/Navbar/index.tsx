@@ -2,8 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom'
+import { useMe } from '../../../hooks';
 
 const NavBar = () => {
+
+  const { logout } = useMe()
+
     return (
         <Navbar variant="dark" expand="lg">
       <Container fluid>
@@ -17,6 +21,7 @@ const NavBar = () => {
             <NavLink className="nav-link" to="/movies">Busqueda</NavLink>
             <NavLink className="nav-link" to="/login">Login</NavLink>
             <NavLink className="nav-link" to="/signup">Signup</NavLink>
+            <Nav.Link className="nav-link" onClick={logout}>Cerrar sesión</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
